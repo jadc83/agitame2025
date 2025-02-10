@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreComentarioRequest;
 use App\Http\Requests\UpdateComentarioRequest;
 use App\Models\Comentario;
+use App\Models\Noticia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -74,4 +75,5 @@ class ComentarioController extends Controller
     {
         //
     }
+
 }
