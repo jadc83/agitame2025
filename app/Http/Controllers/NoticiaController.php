@@ -4,20 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreNoticiaRequest;
 use App\Http\Requests\UpdateNoticiaRequest;
-use App\Models\Comentario;
 use App\Models\Noticia;
-use Illuminate\Support\Facades\Auth;
 
 class NoticiaController extends Controller
 {
-
-    public $codigo = 3;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $noticias = Noticia::with('comentarios.comentarios.comentarios')->get();
+        $noticias = Noticia::with('comentarios')->get();
 
         return view('noticias.index', ['noticias' => $noticias]);
     }
@@ -35,14 +31,7 @@ class NoticiaController extends Controller
      */
     public function store(StoreNoticiaRequest $request)
     {
-        Comentario::create([
-            'user_id' => Auth::id(),
-            'contenido' => $request->respuesta,
-            'comentable_type' => 'App\Models\Noticia',
-            'comentable_id' => 2
-        ]);
 
-        return redirect()->route('noticias.show', 2);
     }
 
     /**
@@ -77,11 +66,4 @@ class NoticiaController extends Controller
         //
     }
 
-    public function nuevoCodigo ()
-    {
-        $this->codigo++;
-
-        return $this->codigo;
-
-    }
 }

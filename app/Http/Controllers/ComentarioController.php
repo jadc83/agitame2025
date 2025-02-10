@@ -6,6 +6,7 @@ use App\Http\Requests\StoreComentarioRequest;
 use App\Http\Requests\UpdateComentarioRequest;
 use App\Models\Comentario;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ComentarioController extends Controller
 {
@@ -30,11 +31,13 @@ class ComentarioController extends Controller
      */
     public function store(StoreComentarioRequest $request)
     {
+
         Comentario::create([
             'user_id' => Auth::id(),
+            'codigo' => DB::selectOne("SELECT nextval('comentarios_codigo_seq')")->nextval,
             'contenido' => $request->respuesta,
-            'comentable_type' => 'App\Models\Comentario',
-            'comentable_id' => 50
+            'comentable_type' => $request->comentable_type,
+            'comentable_id' => $request->comentable_id
         ]);
 
         return redirect()->back();

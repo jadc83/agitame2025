@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('codigo')->unique();
             $table->string('titulo');
             $table->string('url');
             $table->string('resumen', 3000);

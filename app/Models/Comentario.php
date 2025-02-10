@@ -15,9 +15,10 @@ class Comentario extends Model
         return $this->morphTo();
     }
 
-    public function comentarios(): MorphMany
+    public function comentarios()
     {
-        return $this->morphMany(Comentario::class, 'comentable')->with('comentarios');
+        return $this->hasMany(Comentario::class, 'comentable_id')
+                    ->where('comentable_type', Comentario::class);
     }
 
     public function usuario()
