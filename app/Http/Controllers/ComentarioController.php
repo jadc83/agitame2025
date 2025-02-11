@@ -35,7 +35,7 @@ class ComentarioController extends Controller
 
         Comentario::create([
             'user_id' => Auth::id(),
-            'codigo' => DB::selectOne("SELECT nextval('comentarios_codigo_seq')")->nextval,
+            'codigo' => DB::selectOne("SELECT 'comentarios_codigo_seq.currval'"),
             'contenido' => $request->respuesta,
             'comentable_type' => $request->comentable_type,
             'comentable_id' => $request->comentable_id

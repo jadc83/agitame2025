@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\CodigoController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\ProfileController;
@@ -22,7 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/comentarios', ComentarioController::class);
     Route::post('/noticias/{noticia}/menear', [NoticiaController::class, 'menear'])->name('noticias.menear');
     Route::get('/noticias/{noticia}/desmenear', [NoticiaController::class, 'desmenear'])->name('noticias.desmenear');
-
+    Route::post('/generar/{noticia}', [NoticiaController::class, 'generar'])->name('noticias.generar');
 
 });
 
